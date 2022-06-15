@@ -9,6 +9,7 @@ import Support from "./pages/Support/Support";
 import Login from "./pages/Login/Login";
 import AuthProvider from "./services/AuthProvider";
 import ProtectedRoute from "./helpers/ProtectedRoute";
+import Settings from "./pages/Settings/Settings";
 
 const App = () => {
   return (
@@ -62,6 +63,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Support />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
               </ProtectedRoute>
             }
           />

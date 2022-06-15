@@ -35,7 +35,6 @@ const AuthProvider = ({ children }) => {
 
   const handleLogout = () => {
     sessionStorage.setItem('token', null);
-    console.log("Im Logged out");
     navigateToLogin("/login");
   };
 

@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
+import Layout from '../../components/Layout';
+import { MainContentContainer, MainContentDisplay } from "../../core-ui/Navigation.styles";
 
 const Orgs = () => {
   return (
-    <div>Orgs</div>
+    <Layout title="SISAP-CERT">
+      <MainContentContainer>
+        <MainContentDisplay>
+          Orgs
+        </MainContentDisplay>
+      </MainContentContainer>
+    </Layout>
   )
 }
 

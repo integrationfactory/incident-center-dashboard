@@ -38,21 +38,21 @@ const Sidebar = ({ setClose, close }) => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
+            <NavLink exact to="/incidents" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns">Incidents</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/tables" activeClassName="activeClicked">
+            <NavLink exact to="/stats" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Stats</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/profile" activeClassName="activeClicked">
+            <NavLink exact to="/orgs" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Organizations</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
+            <NavLink exact to="/reports" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">
                 Reports
               </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
+            <NavLink exact to="/settings" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">
                 Settings
               </CDBSidebarMenuItem>
@@ -62,8 +62,8 @@ const Sidebar = ({ setClose, close }) => {
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: "center" }}>
-        <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">
+        <NavLink exact to="/support" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line" style={{color:"white"}}>
                 Support
               </CDBSidebarMenuItem>
             </NavLink>

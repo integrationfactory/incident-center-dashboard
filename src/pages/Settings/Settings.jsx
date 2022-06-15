@@ -1,16 +1,18 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import { MainContentContainer, MainContentDisplay } from "../../core-ui/Navigation.styles";
-const Support = () => {
+
+
+const Settings = () => {
   return (
     <Layout title="SISAP-CERT">
       <MainContentContainer>
         <MainContentDisplay>
-          Support
+          Settings
         </MainContentDisplay>
       </MainContentContainer>
     </Layout>
   )
 }
 
-export default Support
+export default Settings

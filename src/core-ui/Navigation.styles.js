@@ -134,3 +134,18 @@ export const UserProfile = styled.div`
 
   color: #000000;
 `;
+
+export const MainContentContainer = styled.div`
+    background: #EEE;
+    width: 100%;
+    height: 100vh;
+`
+
+export const MainContentDisplay = styled.div`
+  width: 90%;
+  height: 75vh;
+  background: white;
+  position: relative;
+  left: 5%;
+  margin-top: 3%;
+`

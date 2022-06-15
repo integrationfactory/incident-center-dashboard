@@ -1,80 +1,104 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import {FaAngleDown} from "react-icons/fa";
-import { useTable, useFilters, useGlobalFilter, useAsyncDebounce } from 'react-table';
-import FilterTableComponent from "../../components/tables/Table";
+import { FaAngleDown } from "react-icons/fa";
+import {
+  ButtonsContainer,
+  SingleButtonContainer,
+  Button,
+  ButtonText,
+  ButtonPopup,
+  SinglePopupContainer,
+  PopupsContainer,
+  ButtonExportPopup
+} from "./Incidents.styles";
+import {
+  MainContentContainer,
+  MainContentDisplay,
+} from "../../core-ui/Navigation.styles";
+import WithMaterialSearch from "../../components/tables/MDBTable";
 
 const Incidents = () => {
+  const [activeOrgs, setActiveOrgs] = React.useState(false);
+  const [activeExport, setActiveExport] = React.useState(false);
+
+  const openOrgsPopup = () => {
+    setActiveOrgs(!activeOrgs);
+    setActiveExport(false);
+  };
+  const openExportPopup = () => {
+    setActiveOrgs(false);
+    setActiveExport(!activeExport);
+  };
+  console.log(activeExport)
   return (
     <>
       <Layout title="SISAP-CERT">
-        <div style={{ background: "#EEE", width: "100%", height: "100vh" }}>
-          <div
-            className="row"
-            style={{ width: "100%", height: "70px", marginTop: "30px" }}
-          >
-            <div className="col-sm-4" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-              <div
-                style={{
-                  width: "60%",
-                  height: "60px",
-                  background: "#002C3E",
-                  color: "white",
-                  textAlign: "center",
-                  padding: "10px 0px",
-                  alignContent:"center",
-                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                  borderRadius:"4px"
-                }}
-              >
-                <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-                  Organization <FaAngleDown/>
-                </p>
+        <MainContentContainer>
+          <ButtonsContainer className="row">
+            <SingleButtonContainer className="col-sm-4">
+              <Button color="#002C3E" onClick={openOrgsPopup}>
+                <ButtonText>
+                  Organization <FaAngleDown />
+                </ButtonText>
+              </Button>
+            </SingleButtonContainer>
+            <SingleButtonContainer className="col-sm-4">
+              <Button color="#002C3E" onClick={openExportPopup}>
+                <ButtonText>
+                  Export <FaAngleDown />
+                </ButtonText>
+              </Button>
+            </SingleButtonContainer>
+            <SingleButtonContainer className="col-sm-4">
+              <Button color="#C10000" >
+                <ButtonText>+ Add New Report</ButtonText>
+              </Button>
+            </SingleButtonContainer>
+          </ButtonsContainer>
 
-              </div>
-            </div>
-            <div className="col-sm-4" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-              <div
-                style={{
-                  width: "60%",
-                  height: "60px",
-                  background: "#002C3E",
-                  color: "white",
-                  textAlign: "center",
-                  padding: "10px 0px",
-                  alignContent:"center",
-                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                  borderRadius:"4px"
-                }}
-              >
-                <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-                  Export <FaAngleDown/>
-                </p>
-              </div>
-            </div>
-            <div className="col-sm-4" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-              <div
-                style={{
-                  width: "60%",
-                  height: "60px",
-                  background: "#C10000",
-                  color: "white",
-                  textAlign: "center",
-                  padding: "10px 0px",
-                  alignContent:"center",
-                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-                  borderRadius:"4px"
-                }}
-              >
-                <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-                  + Add New Report
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="row" style={{width:"90%", height:"70vh", background:"white", position:"relative", left:"5%", marginTop:"3%"}}>
-          </div>
-        </div>
+          {activeOrgs && (
+            <PopupsContainer className="row">
+              <SinglePopupContainer className="col-sm-4">
+                <ButtonPopup color="white">
+                  <ButtonText>
+                    <div>
+                      <p>Verizon</p>
+                    </div>
+                    <div>
+                      <p>TruStar</p>
+                    </div>
+                    <div>
+                      <p>SISAP-CERT</p>
+                    </div>
+                  </ButtonText>
+                </ButtonPopup>
+              </SinglePopupContainer>
+              <div className="col-sm-8"></div>
+            </PopupsContainer>
+          )}
+
+         { activeExport &&
+          <PopupsContainer className="row">
+            <div className="col-sm-4"></div>
+            <SinglePopupContainer className="col-sm-4">
+              <ButtonExportPopup color="white">
+                <ButtonText>
+                  <div>
+                    <p>Verizon JSON</p>
+                  </div>
+                  <div>
+                    <p>CSV</p>
+                  </div>
+                </ButtonText>
+              </ButtonExportPopup>
+            </SinglePopupContainer>
+            <div className="col-sm-4"></div>
+          </PopupsContainer>}
+
+          <MainContentDisplay>
+            <WithMaterialSearch />
+          </MainContentDisplay>
+        </MainContentContainer>
       </Layout>
     </>
   );
