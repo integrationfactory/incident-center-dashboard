@@ -13,8 +13,9 @@ const AuthProvider = ({ children }) => {
   const handleLogin = async (username, pass) => {
     const userData = { email: username, password: pass };
     axios
-      .post("http://localhost:8000/api/v1/token-auth/", userData)
+      .post("http://127.0.0.1:8000/auth/jwt/create/", userData)
       .then(function (response) {
+        console.log(response)
         sessionStorage.setItem('token', response.data.access)
         console.log(sessionStorage.getItem('token'))
         const origin = location.state?.from?.pathname || '/incidents';

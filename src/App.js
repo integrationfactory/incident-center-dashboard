@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Incidents from "./pages/Incidents/Incidents";
 import Stats from "./pages/Stats/Stats";
 import Orgs from "./pages/Orgs/Orgs";
+import CreateOrgs from "./pages/Orgs/CreateOrgs/CreateOrgs"
+import EditOrgs from "./pages/Orgs/EditOrgs/EditOrgs";
+import ViewOrgs from "./pages/Orgs/ViewOrgs/ViewOrgs";
 import Reports from "./pages/Reports/Reports";
 import Victims from "./pages/Victims/Victims";
 import Support from "./pages/Support/Support";
@@ -39,6 +42,30 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Orgs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/createorgs"
+            element={
+              <ProtectedRoute>
+                <CreateOrgs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/editorgs"
+            element={
+              <ProtectedRoute>
+                <EditOrgs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vieworgs"
+            element={
+              <ProtectedRoute>
+                <ViewOrgs />
               </ProtectedRoute>
             }
           />
