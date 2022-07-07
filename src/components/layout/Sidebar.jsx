@@ -47,6 +47,9 @@ const Sidebar = ({ setClose, close }) => {
             <NavLink exact to="/orgs" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Organizations</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/departments" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">Departments</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink exact to="/reports" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">
                 Reports

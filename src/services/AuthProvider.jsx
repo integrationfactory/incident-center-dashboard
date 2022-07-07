@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
   const handleLogin = async (username, pass) => {
     const userData = { email: username, password: pass };
     axios
-      .post("http://127.0.0.1:8000/auth/jwt/create/", userData)
+      .post("https://incident-center-backend.herokuapp.com/auth/jwt/create/", userData)
       .then(function (response) {
         console.log(response)
         sessionStorage.setItem('token', response.data.access)

@@ -3,9 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import Incidents from "./pages/Incidents/Incidents";
 import Stats from "./pages/Stats/Stats";
 import Orgs from "./pages/Orgs/Orgs";
-import CreateOrgs from "./pages/Orgs/CreateOrgs/CreateOrgs"
+import CreateOrgs from "./pages/Orgs/CreateOrgs/CreateOrgs";
 import EditOrgs from "./pages/Orgs/EditOrgs/EditOrgs";
 import ViewOrgs from "./pages/Orgs/ViewOrgs/ViewOrgs";
+import Departments from "./pages/Orgs/Departments/Departments";
+import CreateDepartment from "./pages/Orgs/Departments/CreateDepartment/CreateDepartment"
+import EditDepartment from "./pages/Orgs/Departments/EditDepartment/EditDepartment"
 import Reports from "./pages/Reports/Reports";
 import Victims from "./pages/Victims/Victims";
 import Support from "./pages/Support/Support";
@@ -66,6 +69,30 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <ViewOrgs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/departments"
+            element={
+              <ProtectedRoute>
+                <Departments />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="createdepartment"
+            element={
+              <ProtectedRoute>
+                <CreateDepartment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="editdepartment"
+            element={
+              <ProtectedRoute>
+                <EditDepartment />
               </ProtectedRoute>
             }
           />

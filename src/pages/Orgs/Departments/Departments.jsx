@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react';
-import Layout from "../../components/Layout";
+import Layout from "../../../components/Layout";
 import { FaPlus, FaTrashAlt, FaEdit, FaUsers, FaBuilding, FaExclamationTriangle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import {
@@ -23,27 +23,26 @@ import {
   Info,
   Logo,
   InfoText
-} from "./Orgs.styles";
-import { MainContentContainer, MainContentDisplay } from "../../core-ui/Navigation.styles";
-import {getOrganizations, deleteOrganization} from "../../services/API"
+} from "../Orgs.styles";
+import { MainContentContainer, MainContentDisplay } from "../../../core-ui/Navigation.styles";
 import {useNavigate} from 'react-router-dom';
 
 
-const Orgs = () => {
+const Departments = () => {
   const axios = require("axios").default;
   const navigate = useNavigate();
-  const [orgsList, setOrgsList] = useState([]);
+  const [departmentsList, setdepartmentsList] = useState([]);
 
   const navigateNew = () => {
     // 👇️ navigate to /contacts
-    navigate('/createorgs');
+    navigate('/createdepartment');
   };
 
   const navigateEdit = (orgId) => {
     // 👇️ navigate to /contacts
     console.log(orgId)
-    navigate('/editorgs');
-    navigate("/editorgs", {
+    navigate('/editdepartment');
+    navigate("/editdepartment", {
       state: { orgId: orgId},
     });
   };
@@ -76,12 +75,12 @@ const Orgs = () => {
   useEffect(() => {
     const fetchData = async () => {
       axios
-      .get("https://incident-center-backend.herokuapp.com/structure/company_details/")
+      .get("https://incident-center-backend.herokuapp.com/structure/departments/")
       .then(function (response){
         console.log(response.data.sort())
-        setOrgsList(response.data)
-        response.data.forEach((org) => {
-          console.log(org)
+        setdepartmentsList(response.data)
+        response.data.forEach((department) => {
+          console.log(department)
         })
       })
     };
@@ -98,7 +97,7 @@ const Orgs = () => {
           <SingleButtonContainer className="col-sm-4">
             <Button color="#C10000" onClick={navigateNew}>
               <ButtonText> 
-                <FaPlus/> Add New Organization
+                <FaPlus/> Add New Department
               </ButtonText>
             </Button>
           </SingleButtonContainer>
@@ -108,13 +107,13 @@ const Orgs = () => {
         <MainContentDisplay>
 
           <FilterContainer >
-            <FilterText>Organization Search</FilterText>
+            <FilterText>Department Search</FilterText>
             <input Filter className="col-sm-4"></input>
           </FilterContainer>
 
           <OrganizationsContainer>
             <OrganizationContainer>
-            {orgsList.map((org)=>{
+            {departmentsList.map((department)=>{
               return (
                 
 
@@ -122,13 +121,13 @@ const Orgs = () => {
 
                     <EditOrganizationButtonContainer className="row">
 
-                      <ButtonOrganization  onClick={() => deleteOrganizationa(org.id)}>
+                      <ButtonOrganization  onClick={() => deleteOrganizationa(department.id)}>
                         <ButtonOrganizationText>
                           <FaTrashAlt/>  
                         </ButtonOrganizationText>
                       </ButtonOrganization >
 
-                      <ButtonOrganization onClick={() => navigateEdit(org.id)}>
+                      <ButtonOrganization onClick={() => navigateEdit(department.id)}>
                         <ButtonOrganizationText>
                           <FaEdit/>  
                         </ButtonOrganizationText>
@@ -155,11 +154,11 @@ const Orgs = () => {
                       </Info>
                     </SingleInfoContainer>
                     
-                    <OrganizationText>{org.id}</OrganizationText>
+                    <OrganizationText>{department.name}</OrganizationText>
                     
                     <ViewOrganizationContainer >
                       <ViewOrganizationButton color="#03A9F5" onClick={navigateView}>
-                          <ButtonText>View Organization</ButtonText>
+                          <ButtonText>View Department</ButtonText>
                       </ViewOrganizationButton>
                     </ViewOrganizationContainer>
 
@@ -180,4 +179,4 @@ const Orgs = () => {
   )
 }
 
-export default Orgs
+export default Departments
