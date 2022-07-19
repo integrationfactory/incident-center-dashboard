@@ -24,11 +24,9 @@ export const MainContainer = styled.div`
 `
 
 export const TableContainer = styled.div`
-    display: flex;
     width: 100%;
-    height: 70%;
+    height: 75%;
     justify-content: center;
-    align-content: flex-start;
 `
 export const InfoContainer = styled.div`
     display: flex;

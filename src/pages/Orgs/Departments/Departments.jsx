@@ -38,21 +38,21 @@ const Departments = () => {
     navigate('/createdepartment');
   };
 
-  const navigateEdit = (orgId) => {
+  const navigateEdit = (deptId) => {
     // 👇️ navigate to /contacts
-    console.log(orgId)
-    navigate('/editdepartment');
-    navigate("/editdepartment", {
-      state: { orgId: orgId},
+    navigate('/editdepartment', {
+      state: { did: deptId},
     });
   };
 
-  const navigateView = () => {
+  const navigateView = (deptId) => {
     // 👇️ navigate to /contacts
-    navigate('/vieworgs');
+    navigate('/viewdepartment', {
+      state: {did: deptId},
+    });
   };
 
-  const deleteOrganizationa = (orgId) => {
+  const deleteOrganizationa = (deptId) => {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -63,11 +63,11 @@ const Departments = () => {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-          console.log(orgId)
+          console.log(deptId)
           // deleteOrganization()
           navigate('/orgs')
           console.log("Delete Organization")
-          console.log(orgId)
+          console.log(deptId)
       }
     })
   }
@@ -157,7 +157,7 @@ const Departments = () => {
                     <OrganizationText>{department.name}</OrganizationText>
                     
                     <ViewOrganizationContainer >
-                      <ViewOrganizationButton color="#03A9F5" onClick={navigateView}>
+                      <ViewOrganizationButton color="#03A9F5" onClick={() => navigateView(department.id)}>
                           <ButtonText>View Department</ButtonText>
                       </ViewOrganizationButton>
                     </ViewOrganizationContainer>

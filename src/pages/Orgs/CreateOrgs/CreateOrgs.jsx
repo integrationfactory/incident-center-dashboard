@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../../../components/Layout';
 import { MainContentContainer, MainContentDisplay } from "../../../core-ui/Navigation.styles";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
     TitleContainer,
     TitleText,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../../components/Layout';
 import Swal from 'sweetalert2';
 import { MainContentContainer, MainContentDisplay } from "../../../core-ui/Navigation.styles";
-import {Routes, Route, useNavigate} from 'react-router-dom';
+import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import {
   TitleContainer,
   TitleText,
@@ -21,8 +21,9 @@ import {
 import {editOrganization, viewOrganization} from "../../../services/API"
 import { FaFireExtinguisher } from 'react-icons/fa';
 
-const EditOrgs = () => {
+const EditOrgs = (props) => {
 const navigate = useNavigate();
+const location = useLocation();
 const axios = require("axios").default;
 
 const [companyRelated, setCompanyRelated] = useState("");
@@ -34,6 +35,7 @@ const [trustartIntegration, setTrustartIntegration] = useState(false)
 const [apiKey, setApiKey] = useState("");
 const [apiSecret, setApiSecret] = useState("");
 const [isActive, setIsActive] = useState(false)
+const { oid } = location.state;
 
 const updateOrg = () => {
     const data={
@@ -51,8 +53,7 @@ const updateOrg = () => {
         api_secret: apiSecret,
         is_active: true
     }
-    editOrganization("2",data)
-    console.log(data)
+    editOrganization(oid,data)
     // navigate to /contacts
     // navigate('/orgs');
     Swal.fire({
@@ -83,7 +84,7 @@ const updateOrg = () => {
   useEffect(() => {
     const fetchData = async () => {
         axios
-        .get("https://incident-center-backend.herokuapp.com/structure/company_details/2/")
+        .get("https://incident-center-backend.herokuapp.com/structure/company_details/"+oid+"/")
         .then(function (response){
             console.log("list of organizations: ", response.data)
             setAddress(response.data.address)

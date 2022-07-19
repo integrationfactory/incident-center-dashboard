@@ -61,3 +61,47 @@ export async function editOrganization(id, data){
   axios
       .delete("https://incident-center-backend.herokuapp.com/structure/company_details/"+id+"/")
   }
+
+  export async function createNewUser(data){
+    axios
+        .post("https://incident-center-backend.herokuapp.com/structure/company_details/", data)
+        .then(function (response){
+          console.log(response)
+          return(response)
+        }).catch(
+          function (error){
+            Swal.fire(
+              {
+                title: 'Something go wrong!',
+                text: error,
+                icon: 'error'
+              }
+            )
+          }
+        );
+    }
+
+  export async function editUser(id, data){
+    axios
+        .post("https://incident-center-backend.herokuapp.com/auth/users/"+id+"/", data)
+        .then(function (response){
+          console.log(response)
+          return(response)
+        }).catch(
+          function (error){
+            Swal.fire(
+              {
+                title: 'Something go wrong!',
+                text: error,
+                icon: 'error'
+              }
+            )
+          }
+        );
+    }
+
+    export async function deleteUser(id) {
+      axios
+          .delete("https://incident-center-backend.herokuapp.com/auth/users/"+id+"/")
+      }
+    

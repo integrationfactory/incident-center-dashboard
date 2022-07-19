@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../../../../components/Layout';
 import { MainContentContainer, MainContentDisplay } from "../../../../core-ui/Navigation.styles";
 import Swal from 'sweetalert2';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useLocation } from 'react-router-dom';
 import {
     TitleContainer,
     TitleText,
@@ -19,27 +19,34 @@ import {
 } from '../CreateDepartment/CreateDepartment.style'
 import WithMaterialSearch from "../../../../components/tables/UsersTable";
 import { useState } from 'react';
+import { editOrganization } from '../../../../services/API';
 
-const EditDepartment = () => {
-    const navigate = useNavigate();
+const EditDepartment = (props) => {
+  const navigate = useNavigate();
+  const location = useLocation();
 
-    const [name, setName] = useState("")
-    const [victims, setVictims] = useState([])
-    const [status, setStatus] = useState(Boolean)
-    const [users, setUsers] = useState([])
+  const [name, setName] = useState("")
+  const [victims, setVictims] = useState([])
+  const [status, setStatus] = useState(Boolean)
+  const [users, setUsers] = useState([])
+
+  const { did } = location.state;
+  const { oid } = location.state;
 
     const updateDepartment = () => {
-        const data={
-            
-        }
-        navigate('/departments');
+      const data={
+        name: name,
+        is_active: status,
+        company_details: oid
+      }
+        // editDepartment(did, data)
         Swal.fire({
             icon: 'success',
             title: 'Organization has been Created',
             showConfirmButton: false,
             timer: 1500
         })
-        console.log(data)
+        navigate('/departments');
     };
 
   const cancel = () => {
@@ -99,9 +106,7 @@ const EditDepartment = () => {
                 </FieldContainer>
                 
               </BlockContainer>
-              <TableContainer>
-                <WithMaterialSearch />
-              </TableContainer>
+              <WithMaterialSearch />
               <ButtonContainer>
                 <SingleButtonContainer>
                   <Button color="#C10000" onClick={cancel}>

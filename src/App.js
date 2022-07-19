@@ -9,6 +9,10 @@ import ViewOrgs from "./pages/Orgs/ViewOrgs/ViewOrgs";
 import Departments from "./pages/Orgs/Departments/Departments";
 import CreateDepartment from "./pages/Orgs/Departments/CreateDepartment/CreateDepartment"
 import EditDepartment from "./pages/Orgs/Departments/EditDepartment/EditDepartment"
+import ViewDepartment from "./pages/Orgs/Departments/ViewDepartments/ViewDepartments"
+import Users from "./pages/Orgs/Users/Users";
+import CreateUser from "./pages/Orgs/Users/CreateUser/CreateUser";
+import EditUser from "./pages/Orgs/Users/EditUser/EditUser";
 import Reports from "./pages/Reports/Reports";
 import Victims from "./pages/Victims/Victims";
 import Support from "./pages/Support/Support";
@@ -93,6 +97,38 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <EditDepartment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="viewdepartment"
+            element={
+              <ProtectedRoute>
+                <ViewDepartment />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="users"
+            element={
+              <ProtectedRoute>
+                <Users />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="createuser"
+            element={
+              <ProtectedRoute>
+                <CreateUser />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="editeuser"
+            element={
+              <ProtectedRoute>
+                <EditUser />
               </ProtectedRoute>
             }
           />

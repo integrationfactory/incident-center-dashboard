@@ -33,6 +33,7 @@ const Orgs = () => {
   const axios = require("axios").default;
   const navigate = useNavigate();
   const [orgsList, setOrgsList] = useState([]);
+  const [orgListD, setOrgsListD] = useState([]);
 
   const navigateNew = () => {
     // 👇️ navigate to /contacts
@@ -41,16 +42,14 @@ const Orgs = () => {
 
   const navigateEdit = (orgId) => {
     // 👇️ navigate to /contacts
-    console.log(orgId)
-    navigate('/editorgs');
     navigate("/editorgs", {
-      state: { orgId: orgId},
+      state: { oid: orgId},
     });
   };
 
-  const navigateView = () => {
+  const navigateView = (orgID) => {
     // 👇️ navigate to /contacts
-    navigate('/vieworgs');
+    navigate('/vieworgs', { state: { oid: orgID}});
   };
 
   const deleteOrganizationa = (orgId) => {
@@ -67,8 +66,6 @@ const Orgs = () => {
           console.log(orgId)
           // deleteOrganization()
           navigate('/orgs')
-          console.log("Delete Organization")
-          console.log(orgId)
       }
     })
   }
@@ -78,11 +75,7 @@ const Orgs = () => {
       axios
       .get("https://incident-center-backend.herokuapp.com/structure/company_details/")
       .then(function (response){
-        console.log(response.data.sort())
         setOrgsList(response.data)
-        response.data.forEach((org) => {
-          console.log(org)
-        })
       })
     };
 
@@ -116,8 +109,6 @@ const Orgs = () => {
             <OrganizationContainer>
             {orgsList.map((org)=>{
               return (
-                
-
                   <Organization color="#03A9F5">
 
                     <EditOrganizationButtonContainer className="row">
@@ -158,7 +149,7 @@ const Orgs = () => {
                     <OrganizationText>{org.id}</OrganizationText>
                     
                     <ViewOrganizationContainer >
-                      <ViewOrganizationButton color="#03A9F5" onClick={navigateView}>
+                      <ViewOrganizationButton color="#03A9F5" onClick={() => navigateView(org.id)}>
                           <ButtonText>View Organization</ButtonText>
                       </ViewOrganizationButton>
                     </ViewOrganizationContainer>

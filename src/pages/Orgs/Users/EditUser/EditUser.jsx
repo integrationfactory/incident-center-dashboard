@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Layout from '../../../../components/Layout';
 import { MainContentContainer, MainContentDisplay } from "../../../../core-ui/Navigation.styles";
-import { useNavigate} from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
     TitleContainer,
     TitleText,
@@ -15,12 +15,15 @@ import {
     SingleButtonContainer,
     Button,
     ButtonText
-  } from "./CreateUser.style";
-import { createNewUser } from "../../../../services/API";
+  } from "../CreateUser/CreateUser.style";
+import { editUser } from "../../../../services/API";
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
+import axios from 'axios';
 
-const CreateUser = () => {
+const EditUser = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -29,9 +32,9 @@ const CreateUser = () => {
     const [phone, setPhone] = useState("");
     const [department, setDepartment] = useState(0);
     const [password, setPassword] = useState("");
-    const [rePassword, setRePassword] = useState("");
+    const { uid } = location.state;
 
-    const createUser = () => {
+    const updateUser = () => {
         const data={
             first_name: name,
             last_name: lastName,
@@ -39,20 +42,18 @@ const CreateUser = () => {
             role: role,
             email: email,
             password: password,
-            re_password: rePassword,
             department: department
             
         }
-        createNewUser(data)
+        editUser(uid,data)
         // navigate to /contacts
-        navigate('/users');
         Swal.fire({
             icon: 'success',
             title: 'User has been Created',
             showConfirmButton: false,
             timer: 1500
         })
-        console.log(data)
+        navigate('/users');
     };
 
     const cancel = () => {
@@ -70,6 +71,23 @@ const CreateUser = () => {
             }
         })
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            axios
+            .get("https://incident-center-backend.herokuapp.com/auth/users/"+uid+"/")
+            .then(function (response){
+                setName(response.first_name)
+                setLastName(response.last_name)
+                setPhone(response.phone)
+                setRole(response.role)
+                setEmail(response.email)
+                setDepartment(response.department)
+            })   
+        };
+
+    fetchData();
+    }, []);
 
 
   return (
@@ -165,12 +183,6 @@ const CreateUser = () => {
                                     onChange={(e) => setPassword(e.target.value)} 
                                     required
                                 />
-                                <input  
-                                    type="password" 
-                                    id="rePassword" 
-                                    onChange={(e) => setRePassword(e.target.value)} 
-                                    required
-                                />
                             </FieldContainer>
                         </BlockContainer>
                     </OrganizationInfoContainer>
@@ -182,8 +194,8 @@ const CreateUser = () => {
                             </Button>
                         </SingleButtonContainer>
                         <SingleButtonContainer>
-                            <Button color="#217819" onClick={createUser}>
-                                <ButtonText>  Add User  </ButtonText>
+                            <Button color="#217819" onClick={updateUser}>
+                                <ButtonText>  Edit User  </ButtonText>
                             </Button>
                         </SingleButtonContainer>
                     </ButtonContainer>
@@ -195,4 +207,4 @@ const CreateUser = () => {
   )
 }
 
-export default CreateUser
+export default EditUser

@@ -6,7 +6,6 @@ const TableActions = () => {
   return (
     <div>
       <FaTrashAlt size={25} />
-      <FaEdit size={25} />
     </div>
   );
 };
@@ -39,11 +38,6 @@ export default function WithMaterialSearch() {
           field: "lastTime",
           width: 150,
         },
-        {
-          label: "Actions",
-          field: "actions",
-          width: 150,
-        },
         
       ],
       rows: [
@@ -52,8 +46,7 @@ export default function WithMaterialSearch() {
           email: "andres.oliva@sisap.com",
           role: "admin",
           lastTime: "Thursday, July 7, 2022, 7:25 (GTM)",
-          status: "Active",
-          actions: TableActions
+          status: "Active"
         },
       ],
     });
@@ -76,17 +69,6 @@ export default function WithMaterialSearch() {
         data={datatable}
         materialSearch
         theadColor="blue"
-        checkbox
-        headCheckboxID='id2'
-        bodyCheckboxID='checkboxes2'
-        getValueCheckBox={(e) => {
-          showLogs2(e);
-        }}
-        getValueAllCheckBoxes={(e) => {
-          showLogs2(e);
-        }}
-        multipleCheckboxes
-        checkboxFirstColumn
       />
      
     );
