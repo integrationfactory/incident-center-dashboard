@@ -3,7 +3,7 @@ const axios = require("axios").default;
 
 export async function getOrganizations() {
   axios
-      .get("https://incident-center-backend.herokuapp.com/structure/company_details/")
+      .get("http://127.0.0.1:8000/structure/company_details/")
       .then(function (response){
         return(response.data)
       })
@@ -11,7 +11,7 @@ export async function getOrganizations() {
 
 export async function viewOrganization(id){
   axios
-      .get("https://incident-center-backend.herokuapp.com/structure/company_details/"+id+"/")
+      .get("http://127.0.0.1:8000/structure/company_details/"+id+"/")
       .then(function (response) {
         // console.log(response)
         return(response.data)
@@ -20,7 +20,7 @@ export async function viewOrganization(id){
 
 export async function createNewOrganization(data){
   axios
-      .post("https://incident-center-backend.herokuapp.com/structure/company_details/", data)
+      .post("http://127.0.0.1:8000/structure/company_details/", data)
       .then(function (response){
         console.log(response)
         return(response)
@@ -39,7 +39,7 @@ export async function createNewOrganization(data){
 
 export async function editOrganization(id, data){
   axios
-      .put("https://incident-center-backend.herokuapp.com/structure/company_details/"+id+"/", data)
+      .put("http://127.0.0.1:8000/structure/company_details/"+id+"/", data)
       .then(function (response){
           console.log(response)
           return(response)
@@ -59,12 +59,76 @@ export async function editOrganization(id, data){
 
   export async function deleteOrganization(id) {
   axios
-      .delete("https://incident-center-backend.herokuapp.com/structure/company_details/"+id+"/")
+      .delete("http://127.0.0.1:8000/structure/company_details/"+id+"/")
   }
+
+  export async function getODepartments() {
+    axios
+        .get("http://127.0.0.1:8000//structure/departments/")
+        .then(function (response){
+          return(response.data)
+        })
+  }
+  
+  export async function viewDepartment(id){
+    axios
+        .get("http://127.0.0.1:8000/structure/departments/"+id+"/")
+        .then(function (response) {
+          // console.log(response)
+          return(response.data)
+        })
+    }
+  
+  export async function createNewDepartment(data){
+    axios
+        .post("http://127.0.0.1:8000/structure/departments/", data)
+        .then(function (response){
+          console.log(response)
+          return(response)
+        }).catch(
+          function (error){
+            Swal.fire(
+              {
+                title: 'Something go wrong!',
+                text: error,
+                icon: 'error'
+              }
+            )
+          }
+        );
+    }
+  
+  export async function editDepartment(id, data){
+    axios
+        .put("http://127.0.0.1:8000/structure/departments/"+id+"/", data)
+        .then(function (response){
+            console.log(response)
+            return(response)
+        }).catch(
+          function (error){
+            Swal.fire(
+              {
+                title: 'Something go wrong!',
+                text: error,
+                icon: 'error'
+              }
+            )
+          }
+        );
+  
+    }
+  
+    export async function deleteDepartment(id) {
+    axios
+        .delete("http://127.0.0.1:8000/structure/departments/"+id+"/")
+    }
+
+  
+  //TODO add JWT token to header for all users API
 
   export async function createNewUser(data){
     axios
-        .post("https://incident-center-backend.herokuapp.com/structure/company_details/", data)
+        .post("http://127.0.0.1:8000/auth/users/", data)
         .then(function (response){
           console.log(response)
           return(response)
@@ -83,7 +147,7 @@ export async function editOrganization(id, data){
 
   export async function editUser(id, data){
     axios
-        .post("https://incident-center-backend.herokuapp.com/auth/users/"+id+"/", data)
+        .post("http://127.0.0.1:8000/auth/users/"+id+"/", data)
         .then(function (response){
           console.log(response)
           return(response)
@@ -102,6 +166,6 @@ export async function editOrganization(id, data){
 
     export async function deleteUser(id) {
       axios
-          .delete("https://incident-center-backend.herokuapp.com/auth/users/"+id+"/")
+          .delete("http://127.0.0.1:8000/auth/users/"+id+"/")
       }
     

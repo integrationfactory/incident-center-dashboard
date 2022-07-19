@@ -67,12 +67,12 @@ const ViewOrgs = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       axios
-      .get("https://incident-center-backend.herokuapp.com/structure/departments/")
+      .get("http://127.0.0.1:8000/structure/departments/")
       .then(function (response){
         setDepartments(response.data)
       })
       axios
-      .get("https://incident-center-backend.herokuapp.com/structure/company_details/"+oid+"/")
+      .get("http://127.0.0.1:8000/structure/company_details/"+oid+"/")
       .then(function(response){
         setOrganization(response.data)
       })

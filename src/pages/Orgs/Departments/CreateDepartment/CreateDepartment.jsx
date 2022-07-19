@@ -17,6 +17,7 @@ import {
     FieldContainer,
     FieldText
 } from './CreateDepartment.style'
+import { createNewDepartment } from "../../../../services/API";
 import WithMaterialSearch from "../../../../components/tables/UsersTable";
 import { useState } from 'react';
 

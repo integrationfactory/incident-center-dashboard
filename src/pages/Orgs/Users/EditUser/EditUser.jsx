@@ -75,7 +75,7 @@ const EditUser = () => {
     useEffect(() => {
         const fetchData = async () => {
             axios
-            .get("https://incident-center-backend.herokuapp.com/auth/users/"+uid+"/")
+            .get("http://127.0.0.1:8000/auth/users/"+uid+"/")
             .then(function (response){
                 setName(response.first_name)
                 setLastName(response.last_name)

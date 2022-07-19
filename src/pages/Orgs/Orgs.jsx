@@ -73,7 +73,7 @@ const Orgs = () => {
   useEffect(() => {
     const fetchData = async () => {
       axios
-      .get("https://incident-center-backend.herokuapp.com/structure/company_details/")
+      .get("http://127.0.0.1:8000/structure/company_details/")
       .then(function (response){
         setOrgsList(response.data)
       })
