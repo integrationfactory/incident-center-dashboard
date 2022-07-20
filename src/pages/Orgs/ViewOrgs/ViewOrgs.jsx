@@ -69,7 +69,8 @@ const ViewOrgs = (props) => {
       axios
       .get("http://127.0.0.1:8000/structure/departments/")
       .then(function (response){
-        setDepartments(response.data)
+        console.log(response)
+        setDepartments(response)
       })
       axios
       .get("http://127.0.0.1:8000/structure/company_details/"+oid+"/")
@@ -120,7 +121,6 @@ const ViewOrgs = (props) => {
                 return (<DepartmentText> {department.name} </DepartmentText>)
                   })
                 }
-                
               </DepartmentContainer>
             </TableContainer>
 

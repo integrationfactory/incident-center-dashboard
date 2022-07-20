@@ -84,18 +84,18 @@ const updateOrg = () => {
   useEffect(() => {
     const fetchData = async () => {
         axios
-        .get("https://incident-center-backend.herokuapp.com/structure/company_details/"+oid+"/")
+        .get("http://127.0.0.1:8000/structure/company_details/"+oid+"/")
         .then(function (response){
-            console.log("list of organizations: ", response.data)
-            setAddress(response.data.address)
-            setApiKey(response.data.api_key)
-            setApiSecret(response.data.api_secret)
-            setEmail(response.data.email)
-            setIsActive(response.data.is_active)
-            setPhoneNumber(response.data.phone_number)
-            setTrustartIntegration(response.data.trustart_integration)
-            setRelatedCompanies(response.data.related_companies)
-            setCompanyRelated(response.data.company_related)
+            console.log("list of organizations: ", response.data.data.address)
+            setAddress(response.data.data.address)
+            setApiKey(response.data.data.api_key)
+            setApiSecret(response.data.data.api_secret)
+            setEmail(response.data.data.email)
+            setIsActive(response.data.data.is_active)
+            setPhoneNumber(response.data.data.phone_number)
+            setTrustartIntegration(response.data.data.trustart_integration)
+            setRelatedCompanies(response.data.data.related_companies)
+            setCompanyRelated(response.data.data.company_related)
         })   
     };
 

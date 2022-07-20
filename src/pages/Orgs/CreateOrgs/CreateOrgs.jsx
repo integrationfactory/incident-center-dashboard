@@ -17,7 +17,7 @@ import {
     Button,
     ButtonText
   } from "./CreateOrgs.styles";
-import {createNewOrganization} from "../../../services/API"
+import { createNewOrganization } from "../../../services/API"
 import Swal from 'sweetalert2';
 
 const CreateOrgs = () => {
@@ -34,31 +34,30 @@ const CreateOrgs = () => {
     const [isActive, setIsActive] = useState("");
 
     const createOrg = () => {
-    const data={
-        company_related: "1",
-        related_companies: [
-            [
-                "1"
-            ]
-        ],
-        email: email,
-        address: address,
-        phone_number: phoneNumber,
-        trustart_integration: false,
-        api_key: apiKey,
-        api_secret: apiSecret,
-        is_active: true
-    }
-    createNewOrganization(data)
-    // navigate to /contacts
-    navigate('/orgs');
-    Swal.fire({
-        icon: 'success',
-        title: 'Organization has been Created',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    console.log(data)
+        const data={
+            company_related: "1",
+            related_companies: [
+                [
+                    "1"
+                ]
+            ],
+            email: email,
+            address: address,
+            phone_number: phoneNumber,
+            trustart_integration: false,
+            api_key: apiKey,
+            api_secret: apiSecret,
+            is_active: true
+        }
+        createNewOrganization(data)
+        // navigate to /contacts
+        Swal.fire({
+            icon: 'success',
+            title: 'Organization has been Created',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        navigate('/orgs');
     };
 
     const cancel = () => {

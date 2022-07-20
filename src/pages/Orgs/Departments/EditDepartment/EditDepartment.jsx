@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../../../../components/Layout';
 import { MainContentContainer, MainContentDisplay } from "../../../../core-ui/Navigation.styles";
 import Swal from 'sweetalert2';
@@ -18,10 +18,10 @@ import {
     FieldText
 } from '../CreateDepartment/CreateDepartment.style'
 import WithMaterialSearch from "../../../../components/tables/UsersTable";
-import { useState } from 'react';
-import { editOrganization } from '../../../../services/API';
+import { editDepartment } from '../../../../services/API';
 
 const EditDepartment = (props) => {
+  const axios = require("axios").default;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -39,10 +39,10 @@ const EditDepartment = (props) => {
         is_active: status,
         company_details: oid
       }
-        // editDepartment(did, data)
+        editDepartment(did, data)
         Swal.fire({
             icon: 'success',
-            title: 'Organization has been Created',
+            title: 'Department has been Edited',
             showConfirmButton: false,
             timer: 1500
         })
@@ -65,6 +65,20 @@ const EditDepartment = (props) => {
       })
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      axios
+      .get("http://127.0.0.1:8000/structure/departments/"+did+"/")
+      .then(function (response){
+        console.log(response)
+        setName(response.data.data.name)
+        setStatus(response.data.data.name)
+      })
+    };
+
+    fetchData();
+  },[]);
+
 
   return (
     <Layout title="SISAP-CERT">
@@ -85,7 +99,7 @@ const EditDepartment = (props) => {
                       type="text"
                       id="name"
                       onChange={(e) => setName(e.target.value)}
-                      value="IT"
+                      value={name}
                       required
                     />
                 </FieldContainer>

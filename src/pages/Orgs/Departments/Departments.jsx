@@ -75,13 +75,9 @@ const Departments = () => {
   useEffect(() => {
     const fetchData = async () => {
       axios
-      .get("https://incident-center-backend.herokuapp.com/structure/departments/")
+      .get("http://127.0.0.1:8000/structure/departments/")
       .then(function (response){
-        console.log(response.data.sort())
-        setdepartmentsList(response.data)
-        response.data.forEach((department) => {
-          console.log(department)
-        })
+        setdepartmentsList(response.data.data)
       })
     };
 
@@ -114,58 +110,56 @@ const Departments = () => {
           <OrganizationsContainer>
             <OrganizationContainer>
             {departmentsList.map((department)=>{
-              return (
-                
+              if (department.is_active){
+                return (
+                    <Organization color="#03A9F5">
 
-                  <Organization color="#03A9F5">
+                      <EditOrganizationButtonContainer className="row">
 
-                    <EditOrganizationButtonContainer className="row">
+                        <ButtonOrganization  onClick={() => deleteOrganizationa(department.id)}>
+                          <ButtonOrganizationText>
+                            <FaTrashAlt/>  
+                          </ButtonOrganizationText>
+                        </ButtonOrganization >
 
-                      <ButtonOrganization  onClick={() => deleteOrganizationa(department.id)}>
-                        <ButtonOrganizationText>
-                          <FaTrashAlt/>  
-                        </ButtonOrganizationText>
-                      </ButtonOrganization >
+                        <ButtonOrganization onClick={() => navigateEdit(department.id)}>
+                          <ButtonOrganizationText>
+                            <FaEdit/>  
+                          </ButtonOrganizationText>
+                        </ButtonOrganization>
 
-                      <ButtonOrganization onClick={() => navigateEdit(department.id)}>
-                        <ButtonOrganizationText>
-                          <FaEdit/>  
-                        </ButtonOrganizationText>
-                      </ButtonOrganization>
+                      </EditOrganizationButtonContainer >
 
-                    </EditOrganizationButtonContainer >
+                      <LogoContainer>
+                        <Logo>
+                          <FaBuilding/>
+                        </Logo>
+                      </LogoContainer>
 
-                    <LogoContainer>
-                      <Logo>
-                        <FaBuilding/>
-                      </Logo>
-                    </LogoContainer>
+                      <SingleInfoContainer className="row">
+                        <Info>
+                          <InfoText>
+                            13 <FaExclamationTriangle/>
+                          </InfoText>
+                        </Info>
+                        <Info>
+                          <InfoText>
+                            13 <FaUsers/>
+                          </InfoText>
+                        </Info>
+                      </SingleInfoContainer>
+                      
+                      <OrganizationText>{department.name}</OrganizationText>
+                      
+                      <ViewOrganizationContainer >
+                        <ViewOrganizationButton color="#03A9F5" onClick={() => navigateView(department.id)}>
+                            <ButtonText>View Department</ButtonText>
+                        </ViewOrganizationButton>
+                      </ViewOrganizationContainer>
 
-                    <SingleInfoContainer className="row">
-                      <Info>
-                        <InfoText>
-                          13 <FaExclamationTriangle/>
-                        </InfoText>
-                      </Info>
-                      <Info>
-                        <InfoText>
-                          13 <FaUsers/>
-                        </InfoText>
-                      </Info>
-                    </SingleInfoContainer>
-                    
-                    <OrganizationText>{department.name}</OrganizationText>
-                    
-                    <ViewOrganizationContainer >
-                      <ViewOrganizationButton color="#03A9F5" onClick={() => navigateView(department.id)}>
-                          <ButtonText>View Department</ButtonText>
-                      </ViewOrganizationButton>
-                    </ViewOrganizationContainer>
-
-                  </Organization>
-
-                
-                )
+                    </Organization>
+                  )
+                }
               })
             }
             

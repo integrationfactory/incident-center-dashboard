@@ -25,7 +25,7 @@ import {
   InfoText
 } from "./Orgs.styles";
 import { MainContentContainer, MainContentDisplay } from "../../core-ui/Navigation.styles";
-import {getOrganizations, deleteOrganization} from "../../services/API"
+import { getOrganizations, deleteOrganization} from "../../services/API"
 import {useNavigate} from 'react-router-dom';
 
 
@@ -64,7 +64,7 @@ const Orgs = () => {
     }).then((result) => {
       if (result.isConfirmed) {
           console.log(orgId)
-          // deleteOrganization()
+          deleteOrganization(orgId)
           navigate('/orgs')
       }
     })
@@ -75,7 +75,8 @@ const Orgs = () => {
       axios
       .get("http://127.0.0.1:8000/structure/company_details/")
       .then(function (response){
-        setOrgsList(response.data)
+        console.log(response)
+        setOrgsList(response.data.data)
       })
     };
 
@@ -108,7 +109,8 @@ const Orgs = () => {
           <OrganizationsContainer>
             <OrganizationContainer>
             {orgsList.map((org)=>{
-              return (
+              if (org.is_active){
+                return (
                   <Organization color="#03A9F5">
 
                     <EditOrganizationButtonContainer className="row">
@@ -158,6 +160,8 @@ const Orgs = () => {
 
                 
                 )
+              }
+              
               })
             }
             

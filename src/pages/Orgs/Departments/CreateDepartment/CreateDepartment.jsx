@@ -34,10 +34,10 @@ const CreateDepartment = () => {
     const createDepartment = () => {
         const data={
           name: name,
-          is_active: status,
-          // company_details: oid
+          is_active: true,
+          company_details: 1
         }
-        // createNewDepartment(data)
+        createNewDepartment(data)
         Swal.fire({
             icon: 'success',
             title: 'Organization has been Created',
